@@ -7,9 +7,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     orderwindow = new OrdersWindow();
-    connect(orderwindow, &OrdersWindow::mainWindow, this, &MainWindow::show);
+    //connect(orderwindow, &OrdersWindow::mainWindow, this, &MainWindow::show);
     storagewindow = new StorageWindow();
-    connect(storagewindow, &StorageWindow::mainWindow, this, &MainWindow::show);
+    //connect(storagewindow, &StorageWindow::mainWindow, this, &MainWindow::show);
+
+    ui->stackedWidget->insertWidget(1, orderwindow);
+    ui->stackedWidget->insertWidget(2, storagewindow);
+
 }
 
 MainWindow::~MainWindow()
@@ -20,14 +24,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    orderwindow->show();
-    hide();
+    ui->stackedWidget->setCurrentIndex(1);
+    // orderwindow->show();
+    // hide();
 }
 
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    storagewindow->show();
-    this->close();
+    ui->stackedWidget->setCurrentIndex(2);
+    // storagewindow->show();
+    // this->close();
 }
 

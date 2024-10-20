@@ -15,14 +15,18 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_OrdersWindow
 {
 public:
-    QTableView *tableView;
     QPushButton *pushButton;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QTableView *tableView;
     QPushButton *pushButton_2;
 
     void setupUi(QDialog *OrdersWindow)
@@ -30,15 +34,40 @@ public:
         if (OrdersWindow->objectName().isEmpty())
             OrdersWindow->setObjectName("OrdersWindow");
         OrdersWindow->resize(903, 737);
-        tableView = new QTableView(OrdersWindow);
-        tableView->setObjectName("tableView");
-        tableView->setGeometry(QRect(100, 20, 751, 581));
         pushButton = new QPushButton(OrdersWindow);
         pushButton->setObjectName("pushButton");
         pushButton->setGeometry(QRect(20, 20, 61, 51));
-        pushButton_2 = new QPushButton(OrdersWindow);
+        widget = new QWidget(OrdersWindow);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(100, 20, 781, 651));
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
+        widget->setSizePolicy(sizePolicy);
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        tableView = new QTableView(widget);
+        tableView->setObjectName("tableView");
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(tableView->sizePolicy().hasHeightForWidth());
+        tableView->setSizePolicy(sizePolicy1);
+
+        verticalLayout->addWidget(tableView);
+
+        pushButton_2 = new QPushButton(widget);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(100, 610, 751, 29));
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
+        pushButton_2->setSizePolicy(sizePolicy2);
+
+        verticalLayout->addWidget(pushButton_2);
+
 
         retranslateUi(OrdersWindow);
 

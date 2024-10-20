@@ -26,13 +26,6 @@ OrdersWindow::~OrdersWindow()
 
 void OrdersWindow::on_pushButton_clicked()
 {
-    this->close();
-    emit mainWindow();
-}
-
-
-void OrdersWindow::on_pushButton_2_clicked()
-{
     model->insertRow(model->rowCount());
 }
 
